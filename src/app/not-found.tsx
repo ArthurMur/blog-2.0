@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import React from 'react'
+import Link from "next/link";
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 export default function NotFound({}: Props) {
   return (
@@ -10,5 +10,5 @@ export default function NotFound({}: Props) {
       <p>This page does not exist</p>
       <Link href="/">Go Home</Link>
     </>
-  )
+  );
 }

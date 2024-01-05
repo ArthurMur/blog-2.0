@@ -1,11 +1,9 @@
-"use client"
+"use client";
 
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 export default function Error({}: Props) {
-  return (
-    <div>Error</div>
-  )
+  return <div>Error</div>;
 }
