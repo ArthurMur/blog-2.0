@@ -1,10 +1,10 @@
 :root 
-  --black: #1a1a1d
+  --bg: #0d0c22
   --blackSoft: #2d2b42
   --white: #fff
   --whiteSoft: #e5e5e5
-  --btn: #950740
-  --btnLighter: #d60a47
+  --btn: #591bc5
+  --btnLighter: #8a47ff
 
 *
   margin: 0
@@ -12,7 +12,7 @@
   box-sizing: border-box
 
 body
-  background-color: var(--black)
+  background-color: var(--bg)
   color: var(--white)
 
 a 
@@ -27,3 +27,29 @@ a
   display: flex
   flex-direction: column
   justify-content: space-between 
+
+@media screen and (max-width: 1536px) 
+  .container
+    width: 1366px
+
+@media screen and (max-width: 1366px) 
+  .container
+    width: 1280px
+
+@media screen and (max-width: 1280px) 
+  .container
+    width: 1024px
+    padding: 0 20px
+
+@media screen and (max-width: 1024px) 
+  .container
+    width: 768px
+
+@media screen and (max-width: 768px) 
+  .container
+    width: 640px
+
+@media screen and (max-width: 640px) 
+  .container
+    width: 475px
+    
