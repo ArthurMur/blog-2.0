@@ -19,20 +19,26 @@
     background-color: var(--btnLighter)
     color: var(--white)
 
-.menuButton, .mobileLinks
+.menuButton
   display: none
 
-@media screen and (max-width: 768px)
+.mobileLinks 
+  opacity: 0
+  transition: opacity 0.3s ease
+
+.open 
+  opacity: 1
+
+@media screen and (max-width: 1024px)
   .links
     display: none
 
   .menuButton 
     display: block
     cursor: pointer
-    font-size: 30px
-    font-weight: bold
 
   .mobileLinks
+    z-index: 1
     position: absolute
     top: 100px
     right: 0
@@ -45,5 +51,5 @@
     transition: all .3s ease-in-out
     gap: 10px
     padding: 10px
-    background-color: var(--btn)
-    
+    backdrop-filter: blur(15px)
+    border: 1px solid rgba(0, 0, 0, 0.2)

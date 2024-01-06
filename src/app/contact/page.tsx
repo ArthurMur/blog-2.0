@@ -12,17 +12,17 @@ const ContactPage: FC = () => {
         {/* <HydrationTestNoSSR/> */}
         {/* <div suppressHydrationWarning>{a}</div> */}
         <form action="" className={styles.form}>
-          <input type="text" placeholder="Name and Surname" />
-          <input type="text" placeholder="Email Address" />
-          <input type="text" placeholder="Phone Number (Optional)" />
+          <input type="text" placeholder="Имя и Фамилия" />
+          <input type="text" placeholder="Электронная почта" />
+          <input type="text" placeholder="Номер телефона (не обязательно)" />
           <textarea
             name=""
             id=""
             cols={30}
             rows={10}
-            placeholder="Message"
+            placeholder="Сообщение"
           ></textarea>
-          <button>Send</button>
+          <button>Отправить</button>
         </form>
       </div>
     </div>
