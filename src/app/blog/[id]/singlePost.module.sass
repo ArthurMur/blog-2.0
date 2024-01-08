@@ -22,21 +22,25 @@
 .detail
   display: flex
   gap: 20px
+  position: relative
 
 .avatar
   object-fit: cover
   border-radius: 50%
+  position: relative
+  max-width: 49px
+  max-height: 49px
 
 .info
   display: flex
   flex-direction: column
   gap: 5px
 
-.author
+.date
   color: gray
   font-weight: bold
 
-.date
+.dateValue
   font-size: 20px
 
 @media screen and (max-width: 768px)
