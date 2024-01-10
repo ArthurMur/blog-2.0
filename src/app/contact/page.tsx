@@ -2,6 +2,11 @@ import React, { FC } from 'react';
 import Image from 'next/image';
 import styles from './contact.module.sass';
 
+export const metadata = {
+  title: "Страница контактов Блогосфера",
+  description: "Описание страницы контактов",
+};
+
 const ContactPage: FC = () => {
   return (
     <div className={styles.container}>

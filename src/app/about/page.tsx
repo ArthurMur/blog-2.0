@@ -2,6 +2,11 @@ import React, { FC } from "react";
 import Image from "next/image";
 import styles from "./about.module.sass";
 
+export const metadata = {
+  title: "Страница О нас",
+  description: "Описание страницы О нас",
+};
+
 const AboutPage: FC = () => {
   return (
     <div className={styles.container}>

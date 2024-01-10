@@ -1,5 +1,6 @@
 import { getUser } from "@/lib/data";
 import styles from "./postUser.module.sass";
+import Image from "next/image";
 
 // FETCH DATA WITH AN API
 // const getData = async (userId) => {
@@ -21,8 +22,12 @@ const PostUser = async ({ userId }: any) => {
 
   return (
     <div className={styles.info}>
-      <span className={styles.author}>Автор:</span>
-      <span className={styles.authorValue}>{user.username}</span>
+      <Image src={user.img ? user.img : "/noavatar.png"} alt="image" fill={false} width={49} height={49} className={styles.avatar} />
+      <div className={styles.container}>
+        <span className={styles.author}>Автор:</span>
+        <span className={styles.authorValue}>{user.username}</span>
+      </div>
+
   </div>
   )
 }

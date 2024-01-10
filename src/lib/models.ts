@@ -41,6 +41,7 @@ interface Post extends Document {
   img?: string;
   userId: string;
   id: string;
+  createdAt: Date;
 }
 
 const postSchema: Schema<Post> = new mongoose.Schema({
@@ -63,6 +64,12 @@ const postSchema: Schema<Post> = new mongoose.Schema({
     type: String,
     required: true,
     unique: true
+  },
+  createdAt: {
+    type: Date,
+    default: function() {
+      return new Date();
+    },
   },
 }, {timestamps: true});
 

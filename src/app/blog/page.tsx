@@ -3,14 +3,10 @@ import styles from './blog.module.sass';
 import PostCard from '@/components/postCard/PostCard';
 import { getPosts } from '@/lib/data';
 
-// const getData = async () => {
-//   const res = await fetch('https://jsonplaceholder.typicode.com/posts');
-//   if (!res.ok) {
-//     throw new Error('Failed to fetch data');
-//   }
-//   const data = await res.json();
-//   return data
-// }
+export const metadata = {
+  title: "Страница постов",
+  description: "Описание страницы постов",
+};
 
 const BlogPage: FC = async () => {
 

@@ -4,6 +4,18 @@ import Image from 'next/image';
 import PostUser from '@/components/postUser/PostUser';
 import { getPost } from '@/lib/data';
 
+
+export const generateMetadata =  async ({params}: {params: {id: any}}) => {
+  const {id} = params;
+
+  const post = await getPost(id);
+
+  return {
+    title: post?.title,
+    desription: post?.desc,
+  }
+};
+
 interface SinglePostPageProps {
   params: any;
 }
@@ -32,13 +44,12 @@ const SinglePostPage: FC<SinglePostPageProps> = async ({params}) => {
       <div className={styles.textContainer}>
         <h1 className={styles.title}>{post?.title}</h1>
         <div className={styles.detail}>
-          <Image src={'https://i.pinimg.com/originals/4b/c0/0c/4bc00c178c7d8b0493e1e83d244780aa.jpg'} alt="image" fill={false} width={49} height={49} className={styles.avatar} />
           {post && <Suspense fallback={<div>Loading...</div>}>
             <PostUser userId = {post.userId}/>
           </Suspense>}
           <div className={styles.info}>
             <span className={styles.date}>Дата публикации:</span>
-            <span className={styles.dateValue}>06.01.2024</span>
+            <span className={styles.dateValue}>{post.createdAt.toString().slice(4,16)}</span>
           </div>
         </div>
         <div className={styles.content}>
