@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-interface User extends Document {
+export interface User extends Document {
   username: string;
   email: string;
   img?: string;
@@ -35,7 +35,7 @@ const userSchema: Schema<User> = new mongoose.Schema({
   }
 }, {timestamps: true});
 
-interface Post extends Document {
+export interface Post extends Document {
   title: string;
   text: string;
   img?: string;

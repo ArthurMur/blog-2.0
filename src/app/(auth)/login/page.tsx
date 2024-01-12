@@ -1,9 +1,19 @@
 import React, { FC } from 'react';
+import { auth } from '@/lib/auth';
+import { handleGithubLogin } from '@/lib/action';
 
-const LoginPage: FC = () => {
+const LoginPage: FC = async () => {
+
+  const session = await auth();
+  console.log(session);
+  
+
   return (
     <div>
-      <h1>Login Page</h1>
+      <form action={handleGithubLogin}>
+        <button>Login with Github</button>
+      </form>
+      
     </div>
   )
 }

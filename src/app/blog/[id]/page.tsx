@@ -3,6 +3,7 @@ import styles from './singlePost.module.sass';
 import Image from 'next/image';
 import PostUser from '@/components/postUser/PostUser';
 import { getPost } from '@/lib/data';
+import { Post } from '@/lib/models';
 
 
 export const generateMetadata =  async ({params}: {params: {id: any}}) => {
@@ -12,7 +13,7 @@ export const generateMetadata =  async ({params}: {params: {id: any}}) => {
 
   return {
     title: post?.title,
-    desription: post?.desc,
+    desription: post?.text,
   }
 };
 
@@ -20,21 +21,21 @@ interface SinglePostPageProps {
   params: any;
 }
 
-// const getData = async (id: any) => {
-//   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
-//   if (!res.ok) {
-//     throw new Error('Failed to fetch data');
-//   }
-//   const data = await res.json();
-//   return data
-// }
+const getData = async (id: any) => {
+  const res = await fetch(`http://localhost:3000/api/blog/${id}`);
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+  const data = await res.json();
+  return data
+}
 
 const SinglePostPage: FC<SinglePostPageProps> = async ({params}) => {
 
   const {id} = params;
 
-  // const post = await getData(id);
-  const post = await getPost(id) ;
+  const post = await getData(id);
+  // const post = await getPost(id) ;
 
   return (
     <div className={styles.container}>

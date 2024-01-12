@@ -1,57 +1,11 @@
-// const users = [
-//   {
-//     id: 1,
-//     username: 'Artur',
-//   },
-//   {
-//     id: 2,
-//     username: 'Alex',
-//   }
-// ];
-
 import { Post, User } from "./models";
 import { connectToDb } from "./utils";
 import { unstable_noStore as noStore } from "next/cache";
 
-// interface Post {
-//   id: number;
-//   title: string;
-//   userId: number;
-//   body: string;
-// }
-
-// const posts: Post[] = [
-//   {
-//     id: 1,
-//     title: 'post 1',
-//     userId: 1,
-//     body: 'post post'
-//   },
-//   {
-//     id: 2,
-//     title: 'post 2',
-//     userId: 1,
-//     body: 'post post'
-//   },
-//   {
-//     id: 3,
-//     title: 'post 3',
-//     userId: 2,
-//     body: 'post post'
-//   },
-//   {
-//     id: 4,
-//     title: 'post 4',
-//     userId: 2,
-//     body: 'post post'
-//   },
-// ]
-
-
-export const getPosts = async () => {
+export const getPosts = async (): Promise<Post[]> => {
   try {
     connectToDb();
-    const posts = await Post.find();
+    const posts: Post[] = await Post.find();
     return posts;
   } catch (err) {
     console.log(err);
@@ -59,10 +13,13 @@ export const getPosts = async () => {
   }
 }
 
-export const getPost = async (id: string) => {
+export const getPost = async (id: string): Promise<Post | null> => {
   try {
     connectToDb();
-    const post = await Post.findOne({id});
+    const post:  Post | null = await Post.findOne({ id });
+    if (!post) {
+      throw new Error('Post not found');
+    }
     return post;
   } catch (err) {
     console.log(err);
@@ -70,11 +27,14 @@ export const getPost = async (id: string) => {
   }
 }
 
-export const getUser = async (id: any) => {
+export const getUser = async (id: string): Promise<User | null> => {
   noStore();
   try {
     connectToDb();
-    const user = await User.findById(id);
+    const user: User | null = await User.findById(id);
+    if (!user) {
+      throw new Error('User not found');
+    }
     return user;
   } catch (err) {
     console.log(err);
@@ -83,13 +43,13 @@ export const getUser = async (id: any) => {
   }
 };
 
-export const getUsers = async () => {
+export const getUsers = async (): Promise< User[]> => {
   try {
     connectToDb();
-    const users = await User.find();
+    const users: User[] = await User.find();
     return users;
   } catch (err) {
     console.log(err);
     throw new Error('Failed to fetch users');
-    }
+  }
 }
