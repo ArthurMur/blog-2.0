@@ -26,8 +26,6 @@ const userSchema: Schema<User> = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
-    min: 6
   },
   isAdmin: {
     type: Boolean,
@@ -73,5 +71,5 @@ const postSchema: Schema<Post> = new mongoose.Schema({
   },
 }, {timestamps: true});
 
-export const User = mongoose.models.User || mongoose.model<User>('User', userSchema);
-export const Post = mongoose.models.Post || mongoose.model<Post>('Post', postSchema);
+export const User = mongoose.models?.User || mongoose.model<User>('User', userSchema);
+export const Post = mongoose.models?.Post || mongoose.model<Post>('Post', postSchema);

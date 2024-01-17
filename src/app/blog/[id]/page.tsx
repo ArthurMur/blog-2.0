@@ -35,7 +35,6 @@ const SinglePostPage: FC<SinglePostPageProps> = async ({params}) => {
   const {id} = params;
 
   const post = await getData(id);
-  // const post = await getPost(id) ;
 
   return (
     <div className={styles.container}>
@@ -50,7 +49,7 @@ const SinglePostPage: FC<SinglePostPageProps> = async ({params}) => {
           </Suspense>}
           <div className={styles.info}>
             <span className={styles.date}>Дата публикации:</span>
-            <span className={styles.dateValue}>{post.createdAt.toString().slice(4,16)}</span>
+            <span className={styles.dateValue}>{post.createdAt.toString().slice(0, 10)}</span>
           </div>
         </div>
         <div className={styles.content}>
