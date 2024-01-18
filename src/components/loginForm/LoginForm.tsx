@@ -14,10 +14,6 @@ const LoginForm: FC<LoginFormProps> = () => {
 
   const router = useRouter();
 
-  // useEffect(() => {
-  //   state?.login && router.push('/login');
-  // }, [state?.login, router]);
-
   return (
     <form className={styles.form} action={formAction}>
       <input type="text" placeholder="Имя" name="username" />

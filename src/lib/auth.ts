@@ -4,31 +4,41 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { User } from "./models";
 import { connectToDb } from "./utils";
 import bcrypt from "bcryptjs";
+import { authConfig } from "./auth.config ";
+
 
 const login = async (credentials: any) => {
   try {
     connectToDb();
-    const user = await User.findOne({username: credentials.username});
+    const user = await User.findOne({ username: credentials.username });
 
     if (!user) {
-      throw new Error("Wrong credentials")
+      throw new Error("Wrong credentials");
     }
 
-    const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password);
+    const isPasswordCorrect = await bcrypt.compare(
+      credentials.password,
+      user.password
+    );
 
     if (!isPasswordCorrect) {
       throw new Error("Wrong credentials");
-    } 
+    }
 
     return user;
-
   } catch (err) {
     console.error(err);
-    throw new Error("Failed to login!")
+    throw new Error("Failed to login!");
   }
-}
+};
 
-export const { handlers: {GET, POST}, auth, signIn, signOut } = NextAuth({
+export const {
+  handlers: { GET, POST },
+  auth,
+  signIn,
+  signOut,
+} = NextAuth({
+  ...authConfig,
   providers: [
     GitHub({
       clientId: process.env.GITHUB_ID,
@@ -36,17 +46,21 @@ export const { handlers: {GET, POST}, auth, signIn, signOut } = NextAuth({
     }),
     CredentialsProvider({
       async authorize(credentials) {
-        try{
+        try {
           const user = await login(credentials);
           return user;
-        } catch(err) {
-          return null
+        } catch (err) {
+          return null;
         }
-      }
-    })
+      },
+    }),
   ],
   callbacks: {
-    async signIn(params: { user: any; account: any; profile?: any;}): Promise<any> {
+    async signIn(params: {
+      user: any;
+      account: any;
+      profile?: any;
+    }): Promise<any> {
       const { user, account, profile } = params;
       console.log(user, account, profile);
       if (account.provider === "github") {
@@ -62,16 +76,14 @@ export const { handlers: {GET, POST}, auth, signIn, signOut } = NextAuth({
 
             await newUser.save();
           }
-
-      } catch (error) {
-        console.log(error);
-        console.error(error);
-        return false;
-        
+        } catch (error) {
+          console.log(error);
+          console.error(error);
+          return false;
+        }
       }
-       
-      }  
       return true;
-    }, 
-  }, 
-})
+    },
+    ...authConfig.callbacks,
+  },
+});
