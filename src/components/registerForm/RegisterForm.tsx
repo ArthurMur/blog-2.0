@@ -6,6 +6,7 @@ import { register } from '@/lib/action';
 
 import styles from './registerForm.module.sass';
 import Link from 'next/link';
+import Button from '../UI/Button/Button';
 
 interface RegisterFormProps {}
 
@@ -28,9 +29,9 @@ const RegisterForm: FC<RegisterFormProps> = () => {
         placeholder="Подтвердите пароль"
         name="passwordRepeat"
       />
-      <button>Зарегистрироваться</button>
+      <Button text="Зарегистрироваться" />
       {state?.error && <p className={styles.error}>{state.error}</p>}
-      <Link href="/login">Войти</Link>
+      <Link href="/login" className={styles.loginBtn}>Войти</Link>
       
 
     </form>

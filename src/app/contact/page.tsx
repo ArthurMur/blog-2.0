@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import Image from 'next/image';
 import styles from './contact.module.sass';
+import Button from '@/components/UI/Button/Button';
 
 export const metadata = {
   title: "Страница контактов Блогосфера",
@@ -14,8 +15,6 @@ const ContactPage: FC = () => {
         <Image src="/contact.png" alt="" fill className={styles.img} />
       </div>
       <div className={styles.formContainer}>
-        {/* <HydrationTestNoSSR/> */}
-        {/* <div suppressHydrationWarning>{a}</div> */}
         <form action="" className={styles.form}>
           <input type="text" placeholder="Имя и Фамилия" />
           <input type="text" placeholder="Электронная почта" />
@@ -27,7 +26,7 @@ const ContactPage: FC = () => {
             rows={10}
             placeholder="Сообщение"
           ></textarea>
-          <button>Отправить</button>
+          <Button text="Отправить" />
         </form>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { Post, User } from "./models";
 import { connectToDb } from "./utils";
 import { unstable_noStore as noStore } from "next/cache";
@@ -31,14 +32,14 @@ export const getUser = async (id: string): Promise<User | null> => {
   noStore();
   try {
     connectToDb();
-    const user: User | null = await User.findById(id);
+    const objectId = new mongoose.Types.ObjectId(id);
+    const user = await User.findById(objectId);
     if (!user) {
       throw new Error('User not found');
     }
     return user;
   } catch (err) {
     console.log(err);
-    console.log(id);
     throw new Error("Failed to fetch user!");
   }
 };

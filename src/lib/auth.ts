@@ -4,7 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { User } from "./models";
 import { connectToDb } from "./utils";
 import bcrypt from "bcryptjs";
-import { authConfig } from "./auth.config ";
+import { authConfig } from "./auth.config";
 
 
 const login = async (credentials: any) => {
@@ -62,7 +62,6 @@ export const {
       profile?: any;
     }): Promise<any> {
       const { user, account, profile } = params;
-      console.log(user, account, profile);
       if (account.provider === "github") {
         connectToDb();
         try {
@@ -71,7 +70,7 @@ export const {
             const newUser = new User({
               username: profile.login,
               email: profile.email,
-              Image: profile.avatar_url,
+              img: profile.avatar_url,
             });
 
             await newUser.save();

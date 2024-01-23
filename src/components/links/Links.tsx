@@ -63,6 +63,18 @@ export default function Links({session}: Props) {
         {links.map((link) => (
           <NavLink item={link} key={link.title} onClick={handleLinkClick} />
       ))}
+      {session?.user ? (
+          <>  
+            {session.user?.isAdmin && <NavLink item={{title: 'Админ', path: '/admin'}} onClick={handleLinkClick}/>}
+            <form action={handleLogout}>
+              <button className={styles.logout}>Выйти</button>
+            </form>
+          </>
+        ) : (
+          <NavLink item={{title: 'Войти', path: '/login'}} onClick={handleLinkClick}/>
+          )
+        }
+      
       </div>
     </div>
   )

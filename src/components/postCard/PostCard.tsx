@@ -10,7 +10,7 @@ export default function PostCard({post}: Props) {
     <div className={styles.container}>
       <div className={styles.top}>
         <div className={styles.imgContainer}>
-          <Image src={post.img} alt="image" fill className={styles.img} />
+          {post.img ? <Image src={post.img} alt="image" layout="fill" objectFit="cover" fill className={styles.img} /> : <p className={styles.noImg}>Пост без изображения</p>}
         </div>
         <span className={styles.date}>
           {post.createdAt.toString().slice(0,10)}
